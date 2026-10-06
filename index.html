@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Udvenco – Contract Jobs: C2C, C2H, W2</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eceaff;--ink:#14123a;--card:#fff;--muted:#5d5a86;--blue:#3b3bf5;--on-blue:#fff;--line:#14123a;
+--c-Engineering:#8fd3ff;--c-Design:#ff93ab;--c-Marketing:#c8f169;--c-Sales:#ffd24a;--c-Operations:#c3b5ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e26;--ink:#eceaff;--card:#1b1a3d;--muted:#a09dd0;--blue:#8c8cff;--on-blue:#0f0e26;--line:#eceaff}}
+:root[data-theme="dark"]{--bg:#0f0e26;--ink:#eceaff;--card:#1b1a3d;--muted:#a09dd0;--blue:#8c8cff;--on-blue:#0f0e26;--line:#eceaff}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header{display:flex;align-items:center;gap:10px;padding-top:18px;padding-bottom:6px}
+.logo{font-family:Syne,sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.04em;display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:50% 50% 50% 4px;background:var(--blue);display:inline-block;transform:rotate(-12deg)}
+nav{margin-left:auto;display:flex;gap:8px}
+.btn{border:2px solid var(--line);border-radius:99px;padding:8px 18px;font-weight:700;cursor:pointer;background:transparent}
+.btn.fill{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.hero{padding-top:44px;padding-bottom:20px}
+.hero h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.9rem,5.6vw,4rem);line-height:1.15;letter-spacing:-.03em;margin:0;max-width:14em}
+.hero h1 input{font:inherit;letter-spacing:inherit;border:0;border-bottom:4px solid var(--blue);background:transparent;width:5.2em;padding:0 2px;border-radius:0;min-width:0}
+.hero h1 input::placeholder{color:var(--muted);opacity:.55}
+.hero h1 input.l{width:4.6em}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;align-items:center}
+.sep{width:2px;height:22px;background:var(--line);opacity:.25;margin:0 4px}
+.chip{border:2px solid var(--line);background:transparent;border-radius:99px;padding:4px 14px;cursor:pointer;font-weight:500;display:flex;gap:7px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink)}
+.legend{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.count{font-weight:700;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;padding-bottom:60px}
+.tile{border:2px solid var(--line);border-radius:26px 26px 26px 6px;padding:20px;text-align:left;cursor:pointer;color:#14123a;min-height:230px;display:flex;flex-direction:column;box-shadow:6px 6px 0 var(--line);transition:transform .15s,box-shadow .15s}
+.tile:nth-child(even){border-radius:26px 6px 26px 26px}
+.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--line)}
+.tile .top{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;gap:8px}
+.tile h3{font-family:Syne,sans-serif;font-size:1.55rem;line-height:1.1;letter-spacing:-.02em;margin:16px 0 4px}
+.tile .co{font-weight:500}
+.tile .sal{margin-top:auto;font-weight:700;font-size:1.05rem;padding-top:16px}
+.pill{background:rgba(255,255,255,.65);border-radius:99px;padding:1px 10px}
+.empty{grid-column:1/-1;padding:40px;border:2px dashed var(--line);border-radius:20px;text-align:center}
+#veil{position:fixed;inset:0;background:rgba(10,8,40,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
+#veil.on{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--card);border-left:2px solid var(--line);transform:translateX(105%);transition:transform .25s;z-index:6;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px))}
+#drawer.on{transform:none}
+#drawer .band{margin:-24px -26px 18px;padding:calc(24px + env(safe-area-inset-top,0px)) 26px 22px;color:#14123a;border-bottom:2px solid var(--line)}
+#drawer h2{font-family:Syne,sans-serif;font-size:2rem;line-height:1.08;letter-spacing:-.03em;margin:12px 0 4px}
+#drawer h4{margin:20px 0 4px;font-family:Syne,sans-serif}
+#drawer ul{padding-left:20px;margin:0}
+.x{float:right}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+dialog{border:2px solid var(--line);border-radius:22px;padding:0;background:var(--card);color:var(--ink);width:min(480px,92vw)}
+dialog::backdrop{background:rgba(10,8,40,.6)}
+.dlg{padding:22px;display:grid;gap:10px}.dlg h3{margin:0;font-family:Syne,sans-serif;font-size:1.4rem}
+label{display:grid;gap:3px;font-weight:500;font-size:.92rem}
+.dlg input,.dlg select,.dlg textarea{border:2px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--bg)}
+.dlg .row{justify-content:flex-end;margin-top:4px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;font-weight:700}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body>
+<div class="wrap"><header>
+<div class="logo"><i></i>udvenco</div>
+<nav><button class="btn" id="savedBtn" aria-pressed="false">Saved (0)</button><button class="btn fill" id="postBtn">Post a job</button></nav>
+</header>
+<section class="hero">
+<h1>I want a <input id="q" placeholder="role" aria-label="Job title or company"> job in <input id="loc" class="l" placeholder="anywhere" aria-label="Location"></h1>
+<div class="filters" id="filters"></div>
+</section>
+<p class="legend"><b>C2C</b> corp-to-corp &nbsp; <b>C2H</b> contract-to-hire &nbsp; <b>W2</b> employee of the staffing firm</p>
+<div class="count" id="count" aria-live="polite"></div>
+<main class="grid" id="grid"></main></div>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Job details" aria-hidden="true"></aside>
+
+<dialog id="applyDlg"><form class="dlg" method="dialog" id="applyForm"><h3 id="applyTitle">Apply</h3>
+<label>Full name<input name="name" required></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Resume or portfolio link<input name="link" type="url" placeholder="https://"></label>
+<label>Short note<textarea name="note" rows="3"></textarea></label>
+<div class="row"><button class="btn" type="button" data-close>Cancel</button><button class="btn fill" type="submit">Send application</button></div></form></dialog>
+
+<dialog id="postDlg"><form class="dlg" method="dialog" id="postForm"><h3>Post a job</h3>
+<label>Job title<input name="title" required></label>
+<label>Company<input name="company" required></label>
+<label>Location<input name="location" required placeholder="City or Remote"></label>
+<label>Contract type<select name="type"><option value="C2C">C2C (corp-to-corp)</option><option value="C2H">C2H (contract-to-hire)</option><option value="W2">W2 (employee of staffing firm)</option></select></label>
+<label>Category<select name="category"><option>Engineering</option><option>Design</option><option>Marketing</option><option>Sales</option><option>Operations</option></select></label>
+<label>Hourly rate<input name="salary" placeholder="$60 – $75 / hr"></label>
+<label>Description<textarea name="desc" rows="3" required></textarea></label>
+<div class="row"><button class="btn" type="button" data-close>Cancel</button><button class="btn fill" type="submit">Publish job</button></div></form></dialog>
+<div id="toast" role="status"></div>
+
+<script>
+const SAMPLE=[
+{id:"s1",title:"Frontend Developer",company:"Northwind Labs",location:"Remote",type:"C2H",category:"Engineering",salary:"$65 – $80 / hr",desc:"Build fast, accessible interfaces for our logistics dashboard.",reqs:["3+ years with JavaScript and a modern framework","Eye for accessibility and performance","Comfortable across time zones"],posted:"2 days ago"},
+{id:"s2",title:"Product Designer",company:"Fernhill Studio",location:"Albany, NY",type:"W2",category:"Design",salary:"$60 – $75 / hr",desc:"Own the design of our scheduling app from research to shipped UI.",reqs:["Portfolio with shipped product work","Fluent in Figma and prototyping","Can run a user interview"],posted:"4 days ago"},
+{id:"s3",title:"Growth Marketing Manager",company:"Tidepool",location:"New York, NY",type:"W2",category:"Marketing",salary:"$55 – $70 / hr",desc:"Plan and run lifecycle and paid campaigns across email and social.",reqs:["Hands-on with email and paid channels","Strong analytics habits","Clear, concise writing"],posted:"1 week ago"},
+{id:"s4",title:"Backend Engineer",company:"Cobalt Pay",location:"Remote",type:"C2C",category:"Engineering",salary:"$75 – $95 / hr",desc:"Help scale payment APIs that handle millions of requests a day.",reqs:["Node, Go or Python experience","Solid SQL and API design","Production incident experience"],posted:"3 days ago"},
+{id:"s5",title:"Sales Development Rep",company:"Brightline",location:"Boston, MA",type:"W2",category:"Sales",salary:"$28 – $35 / hr",desc:"Start conversations with new customers and book demos for account executives.",reqs:["Excellent communication","Resilient and coachable","Outreach experience is a plus"],posted:"5 days ago"},
+{id:"s6",title:"Operations Coordinator",company:"Greenway Foods",location:"Albany, NY",type:"C2H",category:"Operations",salary:"$30 – $38 / hr",desc:"Support warehouse and supplier teams on a 6-month contract with conversion to full-time.",reqs:["1+ year in logistics or operations","Organized and detail-oriented","Comfortable with spreadsheets"],posted:"Today"},
+{id:"s7",title:"UX Researcher",company:"Fernhill Studio",location:"Remote",type:"C2C",category:"Design",salary:"$60 – $75 / hr",desc:"Run usability studies and turn findings into clear recommendations.",reqs:["2+ years in UX research","Mixed-methods experience","Skilled at presenting findings"],posted:"6 days ago"}
+];
+let jobs=SAMPLE;
+const $=s=>document.querySelector(s);
+const st={q:"",loc:"",type:"All",cat:"All",saved:new Set(),savedOnly:false,sel:null};
+try{JSON.parse(localStorage.getItem("udvenco-saved")||"[]").forEach(i=>st.saved.add(i))}catch(e){}
+const persist=()=>{try{localStorage.setItem("udvenco-saved",JSON.stringify([...st.saved]))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const col=c=>`var(--c-${["Engineering","Design","Marketing","Sales","Operations"].includes(c)?c:"Operations"})`;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
+function filtered(){return jobs.filter(j=>(!st.q||(j.title+" "+j.company).toLowerCase().includes(st.q))&&(!st.loc||j.location.toLowerCase().includes(st.loc))&&(st.type==="All"||j.type===st.type)&&(st.cat==="All"||j.category===st.cat)&&(!st.savedOnly||st.saved.has(j.id)))}
+function renderFilters(){
+  const chip=(k,v,d)=>`<button class="chip" data-k="${k}" data-v="${esc(v)}" aria-pressed="${st[k]===v}">${d?`<span class="dot" style="background:${col(v)}"></span>`:""}${esc(v)}</button>`;
+  const types=["All","C2C","C2H","W2"],cats=["All",...new Set(jobs.map(j=>j.category))];
+  $("#filters").innerHTML=types.map(v=>chip("type",v)).join("")+'<span class="sep"></span>'+cats.map(v=>chip("cat",v,v!=="All")).join("");
+}
+function renderDrawer(){
+  const j=jobs.find(x=>x.id===st.sel),d=$("#drawer"),on=!!j;
+  d.classList.toggle("on",on);$("#veil").classList.toggle("on",on);d.setAttribute("aria-hidden",!on);
+  if(!j)return;
+  d.innerHTML=`<div class="band" style="background:${col(j.category)}"><button class="btn x" id="closeBtn" aria-label="Close">Close</button><span class="pill">${esc(j.type)}</span> <span class="pill">${esc(j.category)}</span>
+  <h2>${esc(j.title)}</h2><div>${esc(j.company)} · ${esc(j.location)} · ${esc(j.posted)}</div></div>
+  <strong style="font-size:1.2rem">${esc(j.salary||"Salary not listed")}</strong>
+  <h4>About the role</h4><p>${esc(j.desc)}</p>${j.reqs.length?`<h4>What we're looking for</h4><ul>${j.reqs.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>`:""}${j.source?`<p style="color:var(--muted);font-size:.9rem">Listed via ${esc(j.source)}</p>`:""}
+  <div class="row"><button class="btn fill" id="applyBtn">Apply now</button><button class="btn" id="saveBtn" aria-pressed="${st.saved.has(j.id)}">${st.saved.has(j.id)?"Saved":"Save job"}</button></div>`;
+}
+function render(){
+  const res=filtered();
+  $("#count").textContent=res.length+(res.length===1?" job":" jobs")+(st.savedOnly?" saved":" open now");
+  $("#grid").innerHTML=res.length?res.map(j=>`<button class="tile" data-id="${esc(j.id)}" style="background:${col(j.category)}">
+  <div class="top"><span class="pill">${esc(j.type)}</span><span>${st.saved.has(j.id)?"★ Saved":esc(j.posted)}</span></div>
+  <h3>${esc(j.title)}</h3><div class="co">${esc(j.company)} · ${esc(j.location)}</div><div class="sal">${esc(j.salary||"")}</div></button>`).join("")
+  :`<div class="empty">No jobs match yet. Clear a filter or try a different search.</div>`;
+  $("#savedBtn").textContent=`Saved (${st.saved.size})`;$("#savedBtn").setAttribute("aria-pressed",st.savedOnly);
+  renderFilters();renderDrawer();
+}
+$("#q").addEventListener("input",e=>{st.q=e.target.value.trim().toLowerCase();render()});
+$("#loc").addEventListener("input",e=>{st.loc=e.target.value.trim().toLowerCase();render()});
+$("#filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;st[c.dataset.k]=c.dataset.v;render()});
+$("#grid").addEventListener("click",e=>{const b=e.target.closest(".tile");if(!b)return;st.sel=b.dataset.id;renderDrawer()});
+$("#veil").addEventListener("click",()=>{st.sel=null;renderDrawer()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&st.sel){st.sel=null;renderDrawer()}});
+$("#drawer").addEventListener("click",e=>{
+  const j=jobs.find(x=>x.id===st.sel);if(!j)return;
+  if(e.target.id==="closeBtn"){st.sel=null;renderDrawer()}
+  if(e.target.id==="saveBtn"){st.saved.has(j.id)?st.saved.delete(j.id):st.saved.add(j.id);persist();toast(st.saved.has(j.id)?"Job saved":"Removed from saved");render()}
+  if(e.target.id==="applyBtn"){if(j.url){window.open(j.url,"_blank","noopener");return}$("#applyTitle").textContent=`Apply to ${j.title} at ${j.company}`;$("#applyDlg").showModal()}
+});
+$("#savedBtn").addEventListener("click",()=>{st.savedOnly=!st.savedOnly;render()});
+$("#postBtn").addEventListener("click",()=>$("#postDlg").showModal());
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>b.closest("dialog").close()));
+$("#applyForm").addEventListener("submit",e=>{e.target.reset();toast("Application sent")});
+$("#postForm").addEventListener("submit",e=>{
+  const f=Object.fromEntries(new FormData(e.target)),id="p"+Date.now();
+  jobs.unshift({id,title:f.title,company:f.company,location:f.location,type:f.type,category:f.category,salary:f.salary,desc:f.desc,reqs:["Details provided by the employer"],posted:"Today"});
+  st.type="All";st.cat="All";st.savedOnly=false;e.target.reset();toast("Job published");render();
+});
+async function loadJobs(){try{const r=await fetch("/api/jobs");if(!r.ok)return;const d=await r.json();
+if(d.jobs&&d.jobs.length){const mine=jobs.filter(j=>String(j.id).startsWith("p"));jobs=[...mine,...d.jobs];if(!jobs.some(j=>j.id===st.sel))st.sel=null;render()}}catch(e){}}
+render();loadJobs();setInterval(loadJobs,300000);
+</script></body></html>
