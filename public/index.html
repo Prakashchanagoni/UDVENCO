@@ -3,84 +3,125 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Udvenco – Contract Jobs: C2C, C2H, W2</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eceaff;--ink:#14123a;--card:#fff;--muted:#5d5a86;--blue:#3b3bf5;--on-blue:#fff;--line:#14123a;
---c-Engineering:#8fd3ff;--c-Design:#ff93ab;--c-Marketing:#c8f169;--c-Sales:#ffd24a;--c-Operations:#c3b5ff;
+:root{--bg:#f4f6f9;--ink:#1b2733;--card:#fff;--muted:#5f6f7f;--blue:#1a4fa0;--on-blue:#fff;--line:#d8dfe7;--tint:#e8f0fc;--hero:#14305f;--ok:#1d7a4d;
+--c-Engineering:#2f6fdb;--c-Design:#d4569b;--c-Marketing:#3d9b5c;--c-Sales:#d99a1a;--c-Operations:#7a5cc7;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e26;--ink:#eceaff;--card:#1b1a3d;--muted:#a09dd0;--blue:#8c8cff;--on-blue:#0f0e26;--line:#eceaff}}
-:root[data-theme="dark"]{--bg:#0f0e26;--ink:#eceaff;--card:#1b1a3d;--muted:#a09dd0;--blue:#8c8cff;--on-blue:#0f0e26;--line:#eceaff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1621;--ink:#e6edf5;--card:#172230;--muted:#94a3b4;--blue:#7aa9f2;--on-blue:#0b1420;--line:#2a3a4d;--tint:#1d2d45;--ok:#5fd199}}
+:root[data-theme="dark"]{--bg:#0e1621;--ink:#e6edf5;--card:#172230;--muted:#94a3b4;--blue:#7aa9f2;--on-blue:#0b1420;--line:#2a3a4d;--tint:#1d2d45;--ok:#5fd199}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
 button,input,select,textarea{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-header{display:flex;align-items:center;gap:10px;padding-top:18px;padding-bottom:6px}
-.logo{font-family:Syne,sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.04em;display:flex;align-items:center;gap:8px}
-.logo i{width:26px;height:26px;border-radius:50% 50% 50% 4px;background:var(--blue);display:inline-block;transform:rotate(-12deg)}
+header{display:flex;align-items:center;gap:10px;padding-top:16px;padding-bottom:4px}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.logo i{width:30px;height:30px;border-radius:8px;background:#2f6fdb;display:inline-grid;place-items:center;color:#fff;font-style:normal;font-size:1rem}
+.logo i::after{content:"U"}
 nav{margin-left:auto;display:flex;gap:8px}
-.btn{border:2px solid var(--line);border-radius:99px;padding:8px 18px;font-weight:700;cursor:pointer;background:transparent}
+.btn{border:1px solid var(--line);border-radius:8px;padding:8px 16px;font-weight:600;cursor:pointer;background:var(--card)}
 .btn.fill{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
-.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.hero{padding-top:44px;padding-bottom:20px}
-.hero h1{font-family:Syne,sans-serif;font-weight:800;font-size:clamp(1.9rem,5.6vw,4rem);line-height:1.15;letter-spacing:-.03em;margin:0;max-width:14em}
-.hero h1 input{font:inherit;letter-spacing:inherit;border:0;border-bottom:4px solid var(--blue);background:transparent;width:5.2em;padding:0 2px;border-radius:0;min-width:0}
-.hero h1 input::placeholder{color:var(--muted);opacity:.55}
-.hero h1 input.l{width:4.6em}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;align-items:center}
-.sep{width:2px;height:22px;background:var(--line);opacity:.25;margin:0 4px}
-.chip{border:2px solid var(--line);background:transparent;border-radius:99px;padding:4px 14px;cursor:pointer;font-weight:500;display:flex;gap:7px;align-items:center}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink)}
-.legend{margin:6px 0 0;color:var(--muted);font-size:.9rem}
-.panel{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;border:2px solid var(--line);border-radius:18px;background:var(--card);padding:12px 16px;margin:6px 0}
+.btn[aria-pressed="true"]{background:var(--tint);color:var(--blue);border-color:var(--blue)}
+.hero{background:var(--hero);color:#fff;border-radius:14px;padding:34px;margin-top:14px}
+.hero h1{font-weight:700;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 6px}
+.hero p{margin:0 0 20px;color:rgba(255,255,255,.85)}
+.search{display:flex;gap:6px;flex-wrap:wrap;background:#fff;border-radius:10px;padding:6px;max-width:760px}
+.search input{flex:1 1 220px;border:0;background:transparent;color:#1b2733;padding:12px;min-width:0;border-radius:6px}
+.search input+input{border-left:1px solid #d8dfe7;border-radius:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;align-items:center}
+.sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 14px;cursor:pointer;font-weight:500;display:flex;gap:7px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
+.dot{width:10px;height:10px;border-radius:50%}
+.panel{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:12px 16px;margin:6px 0}
 .panel[hidden]{display:none}
 .panel label{display:flex;gap:6px;align-items:center;font-weight:500;cursor:pointer}
-.count{font-weight:700;margin:14px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;padding-bottom:60px}
-.tile{border:2px solid var(--line);border-radius:26px 26px 26px 6px;padding:20px;text-align:left;cursor:pointer;color:#14123a;min-height:230px;display:flex;flex-direction:column;box-shadow:6px 6px 0 var(--line);transition:transform .15s,box-shadow .15s}
-.tile:nth-child(even){border-radius:26px 6px 26px 26px}
-.tile:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--line)}
-.tile .top{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;gap:8px}
-.tile h3{font-family:Syne,sans-serif;font-size:1.55rem;line-height:1.1;letter-spacing:-.02em;margin:16px 0 4px}
-.tile .co{font-weight:500}
-.tile .sal{margin-top:auto;font-weight:700;font-size:1.05rem;padding-top:16px}
-.pill{background:rgba(255,255,255,.65);border-radius:99px;padding:1px 10px}
-.empty{grid-column:1/-1;padding:40px;border:2px dashed var(--line);border-radius:20px;text-align:center}
-#veil{position:fixed;inset:0;background:rgba(10,8,40,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
+.count{font-weight:600;margin:14px 0 10px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:12px;padding-bottom:60px}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+.tile{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cat);border-radius:10px;padding:16px;text-align:left;cursor:pointer;color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.06);transition:box-shadow .15s}
+.tile:hover{box-shadow:0 6px 18px rgba(16,24,40,.14)}
+.av{width:44px;height:44px;border-radius:10px;background:var(--tint);color:var(--blue);display:grid;place-items:center;font-weight:700;flex:none}
+.tile .main{flex:1;min-width:0}
+.tile h3{margin:0;font-size:1.05rem;font-weight:650;line-height:1.3}
+.co{color:var(--muted);font-size:.92rem}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.pill{background:var(--tint);color:var(--blue);border-radius:6px;padding:2px 9px;font-size:.8rem;font-weight:600}
+.sal{color:var(--ok);font-weight:600;font-size:.9rem}
+.when{color:var(--muted);font-size:.8rem;white-space:nowrap}
+.empty{grid-column:1/-1;padding:40px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted)}
+#veil{position:fixed;inset:0;background:rgba(10,20,35,.5);opacity:0;pointer-events:none;transition:opacity .2s;z-index:5}
 #veil.on{opacity:1;pointer-events:auto}
-#drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--card);border-left:2px solid var(--line);transform:translateX(105%);transition:transform .25s;z-index:6;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px))}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--card);border-left:1px solid var(--line);box-shadow:-8px 0 30px rgba(16,24,40,.15);transform:translateX(105%);transition:transform .25s;z-index:6;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 26px calc(24px + env(safe-area-inset-bottom,0px))}
 #drawer.on{transform:none}
-#drawer .band{margin:-24px -26px 18px;padding:calc(24px + env(safe-area-inset-top,0px)) 26px 22px;color:#14123a;border-bottom:2px solid var(--line)}
-#drawer h2{font-family:Syne,sans-serif;font-size:2rem;line-height:1.08;letter-spacing:-.03em;margin:12px 0 4px}
-#drawer h4{margin:20px 0 4px;font-family:Syne,sans-serif}
+#drawer .band{margin:-24px -26px 18px;padding:calc(24px + env(safe-area-inset-top,0px)) 26px 22px;background:var(--tint);border-bottom:1px solid var(--line)}
+#drawer h2{font-size:1.6rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin:12px 0 4px}
+#drawer h4{margin:20px 0 4px}
 #drawer ul{padding-left:20px;margin:0}
 .x{float:right}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-dialog{border:2px solid var(--line);border-radius:22px;padding:0;background:var(--card);color:var(--ink);width:min(480px,92vw)}
-dialog::backdrop{background:rgba(10,8,40,.6)}
-.dlg{padding:22px;display:grid;gap:10px}.dlg h3{margin:0;font-family:Syne,sans-serif;font-size:1.4rem}
+dialog{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--card);color:var(--ink);width:min(480px,92vw)}
+dialog::backdrop{background:rgba(10,20,35,.55)}
+.dlg{padding:22px;display:grid;gap:10px}.dlg h3{margin:0;font-size:1.25rem}
 label{display:grid;gap:3px;font-weight:500;font-size:.92rem}
-.dlg input,.dlg select,.dlg textarea{border:2px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--bg)}
+.dlg input,.dlg select,.dlg textarea{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:var(--bg)}
 .dlg .row{justify-content:flex-end;margin-top:4px}
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;font-weight:700}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;font-weight:600}
 #toast.on{opacity:1}
+#welcome{position:fixed;inset:0;z-index:20;background:var(--bg);overflow:auto;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));display:grid;place-items:center}
+#welcome[hidden]{display:none}
+.wl{max-width:1000px;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.wl>div:first-child{background:var(--hero);color:#fff;border-radius:14px;padding:38px}
+.wl h2{font-weight:700;font-size:clamp(1.8rem,4.2vw,2.8rem);line-height:1.15;letter-spacing:-.02em;margin:26px 0 10px}
+.wl p.sub{color:rgba(255,255,255,.85);font-size:1.05rem;max-width:30em}
+.wl-steps{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px;font-weight:600}
+.wl-steps li{display:flex;gap:12px;align-items:center}
+.wl-steps b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#14305f}
+.wl-card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(16,24,40,.12);padding:24px;display:grid;gap:10px;align-content:center}
+.tabs{display:flex;gap:8px}
+.soc{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:9px 14px;font-weight:600;cursor:pointer;text-align:left}
+.soc .ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.8rem}
+.or{text-align:center;color:var(--muted);font-size:.9rem}
+#authForm{display:grid;gap:10px}
+#authForm input{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);width:100%}
+#authForm label{display:grid;gap:3px;font-weight:500;font-size:.92rem}
+#authMsg{margin:0;color:var(--muted);font-size:.9rem;min-height:1.3em}
+.link{background:none;border:0;text-decoration:underline;cursor:pointer;color:var(--muted);justify-self:center}
+@media (max-width:820px){.wl{grid-template-columns:1fr}.hero{padding:24px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
 <body>
 <div class="wrap"><header>
 <div class="logo"><i></i>udvenco</div>
-<nav><button class="btn" id="savedBtn" aria-pressed="false">Saved (0)</button><button class="btn fill" id="postBtn">Post a job</button></nav>
+<nav><button class="btn" id="savedBtn" aria-pressed="false">Saved (0)</button><button class="btn fill" id="postBtn">Post a job</button><button class="btn" id="userBtn" hidden></button></nav>
 </header>
-<section class="hero">
-<h1>I want a <input id="q" placeholder="role" aria-label="Job title or company"> job in <input id="loc" class="l" placeholder="anywhere" aria-label="Location"></h1>
+<section class="hero"><h1>Find your next contract role</h1>
+<p>C2C, C2H and W2 jobs from leading job boards, all in one place.</p>
+<div class="search" role="search"><input id="q" type="search" placeholder="Job title or company" aria-label="Job title or company"><input id="loc" type="search" placeholder="City, state or Remote" aria-label="Location"></div></section>
 <div class="filters" id="filters"></div>
 <div class="panel" id="panel" hidden></div>
-</section>
 <p class="legend"><b>C2C</b> corp-to-corp &nbsp; <b>C2H</b> contract-to-hire &nbsp; <b>W2</b> employee of the staffing firm</p>
 <div class="count" id="count" aria-live="polite"></div>
 <main class="grid" id="grid"></main></div>
 
+<section id="welcome" aria-label="Welcome to Udvenco" hidden><div class="wl">
+<div><div class="logo"><i></i>udvenco</div>
+<h2>You're just a few steps away from your next job.</h2>
+<p class="sub">Contract roles in C2C, C2H and W2, collected from the big job boards in one place.</p>
+<ol class="wl-steps"><li><b>1</b> Create your account</li><li><b>2</b> Pick your contract type</li><li><b>3</b> Apply in minutes</li></ol></div>
+<div class="wl-card">
+<div class="tabs"><button class="chip" data-tab="signup" aria-pressed="true">Sign up</button><button class="chip" data-tab="login" aria-pressed="false">Log in</button></div>
+<button class="soc" data-p="Google"><span class="ic" style="background:var(--c-Design)">G</span>Continue with Google</button>
+<button class="soc" data-p="LinkedIn"><span class="ic" style="background:var(--c-Engineering)">in</span>Continue with LinkedIn</button>
+<button class="soc" data-p="Outlook"><span class="ic" style="background:var(--c-Operations)">O</span>Continue with Outlook</button>
+<div class="or">or use your email</div>
+<form id="authForm"><label id="nameLbl">Full name<input name="name" autocomplete="name"></label>
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<button class="btn fill" id="authGo">Create my account</button></form>
+<p id="authMsg" role="status"></p>
+<button class="link" id="skip">Skip for now</button>
+</div></div></section>
 <div id="veil"></div>
 <aside id="drawer" aria-label="Job details" aria-hidden="true"></aside>
 
@@ -139,7 +180,7 @@ function renderDrawer(){
   const j=jobs.find(x=>x.id===st.sel),d=$("#drawer"),on=!!j;
   d.classList.toggle("on",on);$("#veil").classList.toggle("on",on);d.setAttribute("aria-hidden",!on);
   if(!j)return;
-  d.innerHTML=`<div class="band" style="background:${col(j.category)}"><button class="btn x" id="closeBtn" aria-label="Close">Close</button><span class="pill">${esc(j.type)}</span> <span class="pill">${esc(j.category)}</span>
+  d.innerHTML=`<div class="band"><button class="btn x" id="closeBtn" aria-label="Close">Close</button><span class="pill">${esc(j.type)}</span> <span class="pill">${esc(j.category)}</span>
   <h2>${esc(j.title)}</h2><div>${esc(j.company)} · ${esc(j.location)} · ${esc(j.posted)}</div></div>
   <strong style="font-size:1.2rem">${esc(j.salary||"Salary not listed")}</strong>
   <h4>About the role</h4><p>${esc(j.desc)}</p>${j.reqs.length?`<h4>What we're looking for</h4><ul>${j.reqs.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>`:""}${j.source?`<p style="color:var(--muted);font-size:.9rem">Listed via ${esc(j.source)}</p>`:""}
@@ -148,9 +189,10 @@ function renderDrawer(){
 function render(){
   const res=filtered();
   $("#count").textContent=res.length+(res.length===1?" job":" jobs")+(st.savedOnly?" saved":" open now");
-  $("#grid").innerHTML=res.length?res.map(j=>`<button class="tile" data-id="${esc(j.id)}" style="background:${col(j.category)}">
-  <div class="top"><span class="pill">${esc(j.type)}</span><span>${st.saved.has(j.id)?"★ Saved":esc(j.posted)}</span></div>
-  <h3>${esc(j.title)}</h3><div class="co">${esc(j.company)} · ${esc(j.location)}</div><div class="sal">${esc(j.salary||"")}</div></button>`).join("")
+  $("#grid").innerHTML=res.length?res.map(j=>`<button class="tile" data-id="${esc(j.id)}" style="--cat:${col(j.category)}"><span class="av">${esc((j.company||"?")[0].toUpperCase())}</span>
+  <span class="main"><h3>${esc(j.title)}</h3><div class="co">${esc(j.company)} · ${esc(j.location)}</div>
+  <div class="meta"><span class="pill">${esc(j.type)}</span><span class="pill">${esc(j.category)}</span>${j.salary?`<span class="sal">${esc(j.salary)}</span>`:""}</div></span>
+  <span class="when">${st.saved.has(j.id)?"★ Saved":esc(j.posted)}</span></button>`).join("")
   :`<div class="empty">No jobs match yet. Clear a filter or try a different search.</div>`;
   $("#savedBtn").textContent=`Saved (${st.saved.size})`;$("#savedBtn").setAttribute("aria-pressed",st.savedOnly);
   renderFilters();renderPanel();renderDrawer();
@@ -178,7 +220,17 @@ $("#postForm").addEventListener("submit",e=>{
   jobs.unshift({id,title:f.title,company:f.company,location:f.location,type:f.type,category:f.category,salary:f.salary,desc:f.desc,reqs:["Details provided by the employer"],posted:"Today"});
   st.type="All";st.cat="All";st.savedOnly=false;e.target.reset();toast("Job published");render();
 });
+let user=null,mode="signup";try{user=JSON.parse(localStorage.getItem("udvenco-user")||"null")}catch(e){}
+function applyUser(){$("#welcome").hidden=!!user;document.body.style.overflow=user?"":"hidden";const b=$("#userBtn");b.hidden=!user||!!user.guest;if(user&&!user.guest)b.textContent=(user.name||user.email.split("@")[0])+" · Log out"}
+function setMode(m){mode=m;document.querySelectorAll("[data-tab]").forEach(t=>t.setAttribute("aria-pressed",t.dataset.tab===m));$("#nameLbl").hidden=m==="login";$("#authGo").textContent=m==="login"?"Log in":"Create my account";$("#authMsg").textContent=""}
+document.querySelectorAll("[data-tab]").forEach(t=>t.addEventListener("click",()=>setMode(t.dataset.tab)));
+document.querySelectorAll(".soc").forEach(b=>b.addEventListener("click",()=>{$("#authMsg").textContent=b.dataset.p+" sign-in isn't connected yet. Please use your email below for now."}));
+$("#authForm").addEventListener("submit",e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
+user={name:(f.name||"").trim(),email:f.email.trim()};try{localStorage.setItem("udvenco-user",JSON.stringify(user))}catch(x){}
+applyUser();toast("Welcome"+(user.name?", "+user.name.split(" ")[0]:"")+"!");e.target.reset()});
+$("#skip").addEventListener("click",()=>{user={guest:true};applyUser()});
+$("#userBtn").addEventListener("click",()=>{user=null;try{localStorage.removeItem("udvenco-user")}catch(x){}setMode("signup");applyUser()});
 async function loadJobs(){try{const r=await fetch("/api/jobs");if(!r.ok)return;const d=await r.json();
 if(d.jobs&&d.jobs.length){const mine=jobs.filter(j=>String(j.id).startsWith("p"));jobs=[...mine,...d.jobs];if(!jobs.some(j=>j.id===st.sel))st.sel=null;render()}}catch(e){}}
-render();loadJobs();setInterval(loadJobs,300000);
+applyUser();render();loadJobs();setInterval(loadJobs,300000);
 </script></body></html>
