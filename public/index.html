@@ -33,6 +33,9 @@ nav{margin-left:auto;display:flex;gap:8px}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink)}
 .legend{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.panel{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;border:2px solid var(--line);border-radius:18px;background:var(--card);padding:12px 16px;margin:6px 0}
+.panel[hidden]{display:none}
+.panel label{display:flex;gap:6px;align-items:center;font-weight:500;cursor:pointer}
 .count{font-weight:700;margin:14px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;padding-bottom:60px}
 .tile{border:2px solid var(--line);border-radius:26px 26px 26px 6px;padding:20px;text-align:left;cursor:pointer;color:#14123a;min-height:230px;display:flex;flex-direction:column;box-shadow:6px 6px 0 var(--line);transition:transform .15s,box-shadow .15s}
@@ -72,6 +75,7 @@ label{display:grid;gap:3px;font-weight:500;font-size:.92rem}
 <section class="hero">
 <h1>I want a <input id="q" placeholder="role" aria-label="Job title or company"> job in <input id="loc" class="l" placeholder="anywhere" aria-label="Location"></h1>
 <div class="filters" id="filters"></div>
+<div class="panel" id="panel" hidden></div>
 </section>
 <p class="legend"><b>C2C</b> corp-to-corp &nbsp; <b>C2H</b> contract-to-hire &nbsp; <b>W2</b> employee of the staffing firm</p>
 <div class="count" id="count" aria-live="polite"></div>
@@ -110,17 +114,26 @@ const SAMPLE=[
 ];
 let jobs=SAMPLE;
 const $=s=>document.querySelector(s);
-const st={q:"",loc:"",type:"All",cat:"All",saved:new Set(),savedOnly:false,sel:null};
+const st={q:"",loc:"",type:"All",cat:"All",saved:new Set(),savedOnly:false,sel:null,days:null,remote:false,panel:false};
 try{JSON.parse(localStorage.getItem("udvenco-saved")||"[]").forEach(i=>st.saved.add(i))}catch(e){}
 const persist=()=>{try{localStorage.setItem("udvenco-saved",JSON.stringify([...st.saved]))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const col=c=>`var(--c-${["Engineering","Design","Marketing","Sales","Operations"].includes(c)?c:"Operations"})`;
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
-function filtered(){return jobs.filter(j=>(!st.q||(j.title+" "+j.company).toLowerCase().includes(st.q))&&(!st.loc||j.location.toLowerCase().includes(st.loc))&&(st.type==="All"||j.type===st.type)&&(st.cat==="All"||j.category===st.cat)&&(!st.savedOnly||st.saved.has(j.id)))}
+function daysOld(p){p=String(p||"").toLowerCase();if(p.includes("today"))return 0;const m=p.match(/(\d+)\s*(day|week|month)/);return m?+m[1]*({day:1,week:7,month:30}[m[2]]):999}
+function renderPanel(){
+  const n=(st.days!==null)+(st.remote?1:0);
+  const f=$("#fbtn");f.textContent="Filters"+(n?` (${n})`:"");f.setAttribute("aria-expanded",st.panel);
+  const p=$("#panel");p.hidden=!st.panel;if(!st.panel)return;
+  const dc=(v,l)=>`<button class="chip" data-d="${v}" aria-pressed="${String(st.days)===v}">${l}</button>`;
+  p.innerHTML=`<strong>Posted</strong>${dc("null","Any time")}${dc("0","Today")}${dc("3","Last 3 days")}${dc("7","Last 7 days")}
+  <label><input type="checkbox" id="remoteChk" ${st.remote?"checked":""}> Remote only</label><button class="chip" id="resetF">Reset</button>`;
+}
+function filtered(){return jobs.filter(j=>(!st.q||(j.title+" "+j.company).toLowerCase().includes(st.q))&&(!st.loc||j.location.toLowerCase().includes(st.loc))&&(st.type==="All"||j.type===st.type)&&(st.cat==="All"||j.category===st.cat)&&(!st.savedOnly||st.saved.has(j.id))&&(st.days===null||daysOld(j.posted)<=st.days)&&(!st.remote||/remote/i.test(j.location)))}
 function renderFilters(){
   const chip=(k,v,d)=>`<button class="chip" data-k="${k}" data-v="${esc(v)}" aria-pressed="${st[k]===v}">${d?`<span class="dot" style="background:${col(v)}"></span>`:""}${esc(v)}</button>`;
   const types=["All","C2C","C2H","W2"],cats=["All",...new Set(jobs.map(j=>j.category))];
-  $("#filters").innerHTML=types.map(v=>chip("type",v)).join("")+'<span class="sep"></span>'+cats.map(v=>chip("cat",v,v!=="All")).join("");
+  $("#filters").innerHTML='<button class="chip" id="fbtn" aria-controls="panel">Filters</button><span class="sep"></span>'+types.map(v=>chip("type",v)).join("")+'<span class="sep"></span>'+cats.map(v=>chip("cat",v,v!=="All")).join("");
 }
 function renderDrawer(){
   const j=jobs.find(x=>x.id===st.sel),d=$("#drawer"),on=!!j;
@@ -140,11 +153,13 @@ function render(){
   <h3>${esc(j.title)}</h3><div class="co">${esc(j.company)} · ${esc(j.location)}</div><div class="sal">${esc(j.salary||"")}</div></button>`).join("")
   :`<div class="empty">No jobs match yet. Clear a filter or try a different search.</div>`;
   $("#savedBtn").textContent=`Saved (${st.saved.size})`;$("#savedBtn").setAttribute("aria-pressed",st.savedOnly);
-  renderFilters();renderDrawer();
+  renderFilters();renderPanel();renderDrawer();
 }
 $("#q").addEventListener("input",e=>{st.q=e.target.value.trim().toLowerCase();render()});
 $("#loc").addEventListener("input",e=>{st.loc=e.target.value.trim().toLowerCase();render()});
-$("#filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;st[c.dataset.k]=c.dataset.v;render()});
+$("#filters").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;if(c.id==="fbtn"){st.panel=!st.panel;render();return}st[c.dataset.k]=c.dataset.v;render()});
+$("#panel").addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;if(c.id==="resetF"){st.days=null;st.remote=false}else{st.days=c.dataset.d==="null"?null:+c.dataset.d}render()});
+$("#panel").addEventListener("change",e=>{if(e.target.id==="remoteChk"){st.remote=e.target.checked;render()}});
 $("#grid").addEventListener("click",e=>{const b=e.target.closest(".tile");if(!b)return;st.sel=b.dataset.id;renderDrawer()});
 $("#veil").addEventListener("click",()=>{st.sel=null;renderDrawer()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&st.sel){st.sel=null;renderDrawer()}});
